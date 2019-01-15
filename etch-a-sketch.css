@@ -8,21 +8,20 @@
     grid-template-columns: repeat(16, 1fr);
     width: 960px;
     height: 960px;
+    border: 1px solid black;
 }
 
 .emptySquare {
     background-color: white;
-    border: 1px solid black; 
-    margin: 0.5px;
 }
 
 .fillSquare {
     background-color: black;
-    margin: 0.5px;
 }
 
 .newGridContainer {
     display: grid;
     width: 960px;
     height: 960px;
+    border: 1px solid black;
 }

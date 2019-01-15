@@ -18,7 +18,7 @@ function addColor(e) {
 }
 
 function createGrid() {
-    let gridSize = +prompt('What size square grid? e.g. 12 x 12. (Only first value needed, values under 70 recommeded.)', '');
+    let gridSize = +prompt('What size square grid? e.g. 50 x 50. (Only first value needed. Values under 200 recommeded.)', '');
     if (isNaN(gridSize) === true) {
         alert('Enter a numerical value.');
         createGrid();
