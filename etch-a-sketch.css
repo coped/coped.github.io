@@ -1,5 +1,5 @@
 #container {
-    display: inline-block;
+    display: block;
     text-align: center;
 }
 
@@ -9,6 +9,7 @@
     width: 960px;
     height: 960px;
     border: 1px solid black;
+    margin: auto;
 }
 
 .emptySquare {
@@ -24,4 +25,5 @@
     width: 960px;
     height: 960px;
     border: 1px solid black;
+    margin: auto;
 }
