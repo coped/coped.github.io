@@ -12,9 +12,11 @@ for (i = 0; i < 256; i++) {
 let gridDiv = Array.from(document.querySelectorAll('.emptySquare'));
 gridDiv.forEach(div => div.addEventListener('mouseover', addColor));
 
-
+function rgbValue() {
+    return Math.floor(Math.random() * 255);
+}
 function addColor(e) {
-    e.target.setAttribute('class', 'fillSquare');
+    e.target.style.backgroundColor = 'rgb(' + rgbValue() + ', ' + rgbValue() + ', ' + rgbValue() + ')';
 }
 
 function createGrid() {
