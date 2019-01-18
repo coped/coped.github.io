@@ -1,49 +1,46 @@
-let gridContainer = document.querySelector('#grid');
-
 // Creation of initial grid
-let div;
-for (i = 0; i < 256; i++) {
-    div = document.createElement('div');
-    div.classList.add('emptySquare');
-    gridContainer.appendChild(div);
-}
+let grid = document.querySelector('.grid');
+grid.style.gridTemplateColumns = 'repeat(16, 1fr)';
+generateGridSquares(256);
 
-// Adding functionality to grid squares
-let gridDiv = Array.from(document.querySelectorAll('.emptySquare'));
-gridDiv.forEach(div => div.addEventListener('mouseover', addColor));
+function generateGridSquares(numberOfSquares) {
+    for (i = 0; i < numberOfSquares; i++) {
+        let gridSquare = document.createElement('div');
+        gridSquare.classList.add('empty-square');
+        grid.appendChild(gridSquare);
+    }
 
-function rgbValue() {
-    return Math.floor(Math.random() * 255);
-}
-function addColor(e) {
-    e.target.style.backgroundColor = 'rgb(' + rgbValue() + ', ' + rgbValue() + ', ' + rgbValue() + ')';
-}
+    // Adding functionality to grid squares
+    let gridArray = Array.from(document.querySelectorAll('.empty-square'));
+    gridArray.forEach(div => div.addEventListener('mouseover', addColor));
 
-function createGrid() {
-    let gridSize = +prompt('What size square grid? e.g. 50 x 50. (Only first value needed. Values under 200 recommeded.)', '');
+    function generateRgb() {
+        return Math.floor(Math.random() * 255);
+    }
+    function addColor(e) {
+        e.target.style.backgroundColor = 'rgb(' + generateRgb() + ', ' + generateRgb() + ', ' + generateRgb() + ')';
+        e.target.setAttribute('class', 'fill-square');
+    }
+}
+// For creating new grids
+let button = document.querySelector('#new-grid-button');
+button.addEventListener('click', () => {
+    createNewGrid();
+});
+
+function createNewGrid() {
+    let gridSize = +prompt('How many squares per row/ column? (Values under 200 recommeded.)', '');
     if (isNaN(gridSize) === true) {
         alert('Enter a numerical value.');
-        createGrid();
+        createNewGrid();
         return;
     }
+    grid.remove();
+    grid = document.createElement('div');
+    grid.setAttribute('class', 'grid');
+    document.getElementById('grid-container').appendChild(grid);
+    grid.style.gridTemplateColumns = 'repeat(' + gridSize + ', 1fr)';
     let gridArea = gridSize * gridSize;
-    gridContainer.remove();
-    gridContainer = document.createElement('div');
-    gridContainer.setAttribute('class', 'newGridContainer');
-    document.getElementById('container').appendChild(gridContainer);
-    gridContainer.style.gridTemplateColumns = 'repeat(' + gridSize + ', 1fr)';
 
-    for (i = 0; i < gridArea; i++) {
-        div = document.createElement('div');
-        div.classList.add('emptySquare');
-        gridContainer.appendChild(div);
-    }
-    let newGridDiv = Array.from(document.querySelectorAll('.emptySquare'));
-    newGridDiv.forEach(div => div.addEventListener('mouseover', addColor));
-
+    generateGridSquares(gridArea);
 }
-
-let button = document.querySelector('#new-grid');
-button.addEventListener('click', () => {
-    createGrid();
-});

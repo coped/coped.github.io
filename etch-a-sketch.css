@@ -1,29 +1,21 @@
-#container {
+#main-container {
     display: block;
     text-align: center;
 }
 
-#grid {
+.grid {
     display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    width: 960px;
-    height: 960px;
+    width: 790px;
+    height: 790px;
     border: 1px solid black;
     margin: auto;
+    margin-top: 28px;
 }
 
-.emptySquare {
+.empty-square {
     background-color: white;
 }
 
-.fillSquare {
+.fill-square {
     background-color: black;
-}
-
-.newGridContainer {
-    display: grid;
-    width: 960px;
-    height: 960px;
-    border: 1px solid black;
-    margin: auto;
 }
