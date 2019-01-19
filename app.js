@@ -34,6 +34,8 @@ function createNewGrid() {
         alert('Enter a numerical value.');
         createNewGrid();
         return;
+    } else if (gridSize == false) {
+        return;
     }
     grid.remove();
     grid = document.createElement('div');
