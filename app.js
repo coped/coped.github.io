@@ -2,6 +2,7 @@
 let grid = document.querySelector('.grid');
 grid.style.gridTemplateColumns = 'repeat(16, 1fr)';
 generateGridSquares(256);
+blackWhiteMode();
 
 function generateGridSquares(numberOfSquares) {
     for (i = 0; i < numberOfSquares; i++) {
@@ -9,11 +10,13 @@ function generateGridSquares(numberOfSquares) {
         gridSquare.classList.add('empty-square');
         grid.appendChild(gridSquare);
     }
+}
 
-    // Adding functionality to grid squares
-    let gridArray = Array.from(document.querySelectorAll('.empty-square'));
-    gridArray.forEach(div => div.addEventListener('mouseover', addColor));
-
+// Adding grid interactivity
+function colorMode() {
+    let gridArray = Array.from(document.querySelectorAll('.empty-square, .fill-square'));
+    gridArray.forEach(gridSquare => gridSquare.addEventListener('mouseover', addColor));
+    
     function generateRgb() {
         return Math.floor(Math.random() * 255);
     }
@@ -22,27 +25,51 @@ function generateGridSquares(numberOfSquares) {
         e.target.setAttribute('class', 'fill-square');
     }
 }
-// For creating new grids
-let button = document.querySelector('#new-grid-button');
-button.addEventListener('click', () => {
-    createNewGrid();
-});
+
+function blackWhiteMode() {
+    let emptyGridArray = Array.from(document.querySelectorAll('.empty-square, .fill-square'));
+    emptyGridArray.forEach(gridSquare => gridSquare.addEventListener('mouseover', addBlackWhite));
+
+    function addBlackWhite(e) {
+        e.target.style.backgroundColor = 'black';
+        e.target.setAttribute('class', 'fill-square');
+    }
+}
+
 
 function createNewGrid() {
     let gridSize = +prompt('How many squares per row/ column? (Values under 200 recommeded.)', '');
     if (isNaN(gridSize) === true) {
         alert('Enter a numerical value.');
         createNewGrid();
-        return;
     } else if (gridSize == false) {
         return;
+    } else {
+        grid.remove();
+        grid = document.createElement('div');
+        grid.setAttribute('class', 'grid');
+        document.getElementById('grid-container').appendChild(grid);
+        grid.style.gridTemplateColumns = 'repeat(' + gridSize + ', 1fr)';
+        let gridArea = gridSize * gridSize;
+        
+        generateGridSquares(gridArea);
+        blackWhiteMode();
     }
-    grid.remove();
-    grid = document.createElement('div');
-    grid.setAttribute('class', 'grid');
-    document.getElementById('grid-container').appendChild(grid);
-    grid.style.gridTemplateColumns = 'repeat(' + gridSize + ', 1fr)';
-    let gridArea = gridSize * gridSize;
-
-    generateGridSquares(gridArea);
 }
+
+// For creating new grids
+let newGridButton = document.querySelector('#new-grid-button');
+newGridButton.addEventListener('click', () => {
+    createNewGrid();
+});
+
+// Black and color mode buttons
+let blackWhiteButton = document.querySelector('#black-white-button');
+blackWhiteButton.addEventListener('click', () => {
+    blackWhiteMode();
+});
+
+let colorButton = document.querySelector('#color-button');
+colorButton.addEventListener('click', () => {
+    colorMode();
+})
