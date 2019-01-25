@@ -14,7 +14,7 @@ function generateGridSquares(numberOfSquares) {
 
 // Adding grid interactivity
 function colorMode() {
-    let gridArray = Array.from(document.querySelectorAll('.empty-square, .fill-square'));
+    let gridArray = Array.from(document.querySelectorAll('.empty-square, .full-square'));
     gridArray.forEach(gridSquare => gridSquare.addEventListener('mouseover', addColor));
     
     function generateRgb() {
@@ -22,20 +22,19 @@ function colorMode() {
     }
     function addColor(e) {
         e.target.style.backgroundColor = 'rgb(' + generateRgb() + ', ' + generateRgb() + ', ' + generateRgb() + ')';
-        e.target.setAttribute('class', 'fill-square');
+        e.target.setAttribute('class', 'full-square');
     }
 }
 
 function blackWhiteMode() {
-    let emptyGridArray = Array.from(document.querySelectorAll('.empty-square, .fill-square'));
+    let emptyGridArray = Array.from(document.querySelectorAll('.empty-square, .full-square'));
     emptyGridArray.forEach(gridSquare => gridSquare.addEventListener('mouseover', addBlackWhite));
 
     function addBlackWhite(e) {
         e.target.style.backgroundColor = 'black';
-        e.target.setAttribute('class', 'fill-square');
+        e.target.setAttribute('class', 'full-square');
     }
 }
-
 
 function createNewGrid() {
     let gridSize = +prompt('How many squares per row/ column? (Values under 200 recommeded.)', '');
