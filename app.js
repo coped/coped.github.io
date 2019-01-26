@@ -24,6 +24,8 @@ function colorMode() {
         e.target.style.backgroundColor = 'rgb(' + generateRgb() + ', ' + generateRgb() + ', ' + generateRgb() + ')';
         e.target.setAttribute('class', 'full-square');
     }
+
+    document.getElementById('grid-container').setAttribute('class', 'color-mode');
 }
 
 function blackWhiteMode() {
@@ -34,6 +36,8 @@ function blackWhiteMode() {
         e.target.style.backgroundColor = 'black';
         e.target.setAttribute('class', 'full-square');
     }
+
+    document.getElementById('grid-container').setAttribute('class', 'black-white-mode');
 }
 
 function createNewGrid() {
@@ -52,7 +56,12 @@ function createNewGrid() {
         let gridArea = gridSize * gridSize;
         
         generateGridSquares(gridArea);
-        blackWhiteMode();
+        
+        if (document.getElementById('grid-container').classList == 'color-mode') {
+            colorMode();
+        } else {
+            blackWhiteMode();
+        }
     }
 }
 
