@@ -21,7 +21,7 @@ function colorMode() {
         return Math.floor(Math.random() * 255);
     }
     function addColor(e) {
-        e.target.style.backgroundColor = 'rgb(' + generateRgb() + ', ' + generateRgb() + ', ' + generateRgb() + ')';
+        e.target.style.backgroundColor = `rgb(${generateRgb()}, ${generateRgb()}, ${generateRgb()})`;
         e.target.setAttribute('class', 'full-square');
     }
 
