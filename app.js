@@ -21,7 +21,7 @@ function colorMode() {
         return Math.floor(Math.random() * 255);
     }
     function addColor(e) {
-        e.target.style.backgroundColor = 'rgb(' + generateRgb() + ', ' + generateRgb() + ', ' + generateRgb() + ')';
+        e.target.style.backgroundColor = `rgb(${generateRgb()}, ${generateRgb()}, ${generateRgb()})`;
         e.target.setAttribute('class', 'full-square');
     }
 
@@ -52,7 +52,7 @@ function createNewGrid() {
         grid = document.createElement('div');
         grid.setAttribute('class', 'grid');
         document.getElementById('grid-container').appendChild(grid);
-        grid.style.gridTemplateColumns = 'repeat(' + gridSize + ', 1fr)';
+        grid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
         let gridArea = gridSize * gridSize;
         
         generateGridSquares(gridArea);
